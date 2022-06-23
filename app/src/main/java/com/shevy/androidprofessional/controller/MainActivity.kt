@@ -48,10 +48,10 @@ class MainActivity : AppCompatActivity() {
             updateQuestion()
         }
 
-/*        questionTextView.setOnClickListener {
+        questionTextView.setOnClickListener {
             currentIndex = (currentIndex + 1) % questionBank.size
             updateQuestion()
-        }*/
+        }
 
         val questionTextResId = getString(questionBank[currentIndex].textResId)
         questionTextView.text = questionTextResId
