@@ -16,6 +16,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var nextButton: Button
     private lateinit var questionTextView: TextView
     private var isAnswered = false
+    private var count = 1.0
+    private var trueAnswer = 0.0
 
     private val questionBank = listOf(
         Question(R.string.question_australia, true),
@@ -47,8 +49,9 @@ class MainActivity : AppCompatActivity() {
 
         falseButton.setOnClickListener {
             if (!isAnswered) {
-            checkAnswer(false)
-            isAnswered = true} else {
+                checkAnswer(false)
+                isAnswered = true
+            } else {
                 alreadyAnswer()
             }
         }
@@ -56,7 +59,13 @@ class MainActivity : AppCompatActivity() {
         nextButton.setOnClickListener {
             isAnswered = false
             currentIndex = (currentIndex + 1) % questionBank.size
-            updateQuestion()
+            if (count >= 6.0) {
+                val result = (trueAnswer/count*100).toInt()
+                Toast.makeText(this, "You completed test. You result is $result%", Toast.LENGTH_LONG).show()
+            } else {
+                count++
+                updateQuestion()
+            }
         }
 
 /*        questionTextView.setOnClickListener {
@@ -80,10 +89,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkAnswer(userAnswer: Boolean) {
         val correctAnswer = questionBank[currentIndex].answer
-        val messageResId = if (userAnswer == correctAnswer) {
-            getString(R.string.correct_toast)
+        var messageResId = ""
+        if (userAnswer == correctAnswer) {
+            messageResId = getString(R.string.correct_toast)
+            trueAnswer++
         } else {
-            getString(R.string.incorrect_toast)
+            messageResId = getString(R.string.incorrect_toast)
         }
         Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show()
     }
