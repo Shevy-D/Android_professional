@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var falseButton: Button
     private lateinit var nextButton: Button
     private lateinit var questionTextView: TextView
+    private var isAnswered = false
 
     private val questionBank = listOf(
         Question(R.string.question_australia, true),
@@ -36,14 +37,24 @@ class MainActivity : AppCompatActivity() {
         questionTextView = findViewById(R.id.question_text_view)
 
         trueButton.setOnClickListener {
-            checkAnswer(true)
+            if (!isAnswered) {
+                checkAnswer(true)
+                isAnswered = true
+            } else {
+                alreadyAnswer()
+            }
         }
 
         falseButton.setOnClickListener {
+            if (!isAnswered) {
             checkAnswer(false)
+            isAnswered = true} else {
+                alreadyAnswer()
+            }
         }
 
         nextButton.setOnClickListener {
+            isAnswered = false
             currentIndex = (currentIndex + 1) % questionBank.size
             updateQuestion()
         }
@@ -56,6 +67,10 @@ class MainActivity : AppCompatActivity() {
         val questionTextResId = getString(questionBank[currentIndex].textResId)
         questionTextView.text = questionTextResId
 
+    }
+
+    private fun alreadyAnswer() {
+        Toast.makeText(this, "You already answered", Toast.LENGTH_SHORT).show()
     }
 
     private fun updateQuestion() {
