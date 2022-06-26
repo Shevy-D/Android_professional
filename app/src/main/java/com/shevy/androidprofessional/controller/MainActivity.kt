@@ -44,6 +44,9 @@ class MainActivity : AppCompatActivity() {
 
         val currentIndex = savedInstanceState?.getInt(KEY_INDEX, 0) ?: 0
         quizViewModel.currentIndex = currentIndex
+        val currentIsCheater = savedInstanceState?.getBoolean(KEY_INDEX, false) ?: false
+        quizViewModel.isCheater = currentIsCheater
+
 
         trueButton = findViewById(R.id.true_btn)
         falseButton = findViewById(R.id.false_btn)
@@ -97,6 +100,7 @@ class MainActivity : AppCompatActivity() {
         super.onSaveInstanceState(savedInstanceState)
         Log.i(TAG, "onSaveInstanceState")
         savedInstanceState.putInt(KEY_INDEX, quizViewModel.currentIndex)
+        savedInstanceState.putBoolean(KEY_INDEX, quizViewModel.isCheater)
     }
 
     private fun updateQuestion() {
