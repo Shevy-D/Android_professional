@@ -1,17 +1,14 @@
 package com.shevy.androidprofessional.controller
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.shevy.androidprofessional.QuizViewModel
 import com.shevy.androidprofessional.R
-import com.shevy.androidprofessional.model.Question
 
 private const val TAG = "MainActivity"
 private const val KEY_INDEX = "index"
@@ -72,18 +69,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onPause() {
-        super.onPause()
-    }
-
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
         super.onSaveInstanceState(savedInstanceState)
         Log.i(TAG, "onSaveInstanceState")
         savedInstanceState.putInt(KEY_INDEX, quizViewModel.currentIndex)
-    }
-
-    override fun onStop() {
-        super.onStop()
     }
 
     private fun updateQuestion() {
