@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.DialogFragment
 import com.shevy.androidprofessional.R
+import com.shevy.androidprofessional.model.MyDialogFragment
 
 const val EXTRA_ANSWER_SHOWN = "com.shevy.androidprofessional.controller.answer_shown"
 private const val EXTRA_ANSWER_IS_TRUE = "com.shevy.androidprofessional.controller.answer_is_true"
@@ -28,12 +30,17 @@ class CheatActivity : AppCompatActivity() {
         showAnswerButton = findViewById(R.id.show_answer_button)
 
         showAnswerButton.setOnClickListener {
-            val answerText = when {
+
+            val myDialogFragment = MyDialogFragment()
+            val manager = supportFragmentManager
+            myDialogFragment.show(manager, "myDialog")
+
+            /*val answerText = when {
                 answerIsTrue -> R.string.true_button
                 else -> R.string.false_button
             }
             answerTextView.setText(answerText)
-            setAnswerShownResult(true)
+            setAnswerShownResult(true)*/
         }
     }
 
@@ -42,7 +49,6 @@ class CheatActivity : AppCompatActivity() {
             putExtra(EXTRA_ANSWER_SHOWN, isAnswerShown)
         }
         setResult(Activity.RESULT_OK, data)
-
     }
 
     companion object {
