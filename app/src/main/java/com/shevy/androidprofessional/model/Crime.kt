@@ -1,4 +1,4 @@
-package com.shevy.androidprofessional
+package com.shevy.androidprofessional.model
 
 import java.util.*
 

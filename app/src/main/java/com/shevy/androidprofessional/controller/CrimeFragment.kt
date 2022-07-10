@@ -1,4 +1,4 @@
-package com.shevy.androidprofessional
+package com.shevy.androidprofessional.controller
 
 import android.os.Bundle
 import android.text.Editable
@@ -10,6 +10,8 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import com.shevy.androidprofessional.R
+import com.shevy.androidprofessional.model.Crime
 
 class CrimeFragment : Fragment() {
 
